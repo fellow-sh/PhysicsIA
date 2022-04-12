@@ -38,7 +38,7 @@ x3 = np.linspace(-2, np.log(1.75), 100)
 fig, ax = plt.subplots(1, 3)
 
 ax[0].plot(data[0], data[2]**3, 'b.')
-ax[0].plot(x, res1.slope * x + res1.intercept)
+ax[0].plot(x, res1.slope * x + res1.intercept, color='orange')
 ax[1].plot(data[0], data[2]**2, 'r.')
 ax[1].plot(x, res2.slope * x + res2.intercept)
 ax[2].plot(np.log(data[0]), data[2], '.')

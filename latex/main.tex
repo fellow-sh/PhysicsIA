@@ -1,0 +1,48 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage{amsmath}
+\usepackage{siunitx}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage{titlesec}
+\usepackage[small]{caption}
+
+\usepackage[notes,backend=biber]{biblatex-chicago}
+\usepackage[english]{babel}
+\usepackage{csquotes}
+
+\usepackage[version=4]{mhchem}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\usepackage{newtxtext,newtxmath}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{JYZ314}
+\fancyhead[R]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+\setlength{\headheight}{15.0pt}
+\setlength{\parindent}{0pt}
+
+\titleformat*{\section}{\large\bfseries}
+\titleformat*{\subsection}{\normalsize\bfseries}
+
+\onehalfspacing
+
+\bibliography{references}
+
+\begin{document}
+
+	\begin{center}
+		\large \textbf{Investigating the relationship between current induced through a wire and the force acted on the wire}
+	\end{center}
+
+    \input{sections/intro.tex}
+
+\end{document}
