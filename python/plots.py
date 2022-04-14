@@ -4,7 +4,7 @@ from scipy.stats import linregress
 import numpy as np
 import csv
 
-path = Path(__file__).parent.parent.resolve() / 'data' / 'image-data.csv'
+path = Path(__file__).parent.parent.resolve() / 'data' / 'image-data2.csv'
 
 with open(path) as datafile:
     csv_reader = csv.reader(datafile, delimiter=',')
@@ -25,24 +25,23 @@ data = np.array(data).T
 X = data[0]
 Y = data[2]
 
-res1 = linregress(X, Y**3)
-res2 = linregress(X, Y**2)
-res3 = linregress(np.log(X), Y)
-print(res1.rvalue)
-print(res2.rvalue)
-print(res3.rvalue)
+f1 = plt.figure()
+ax1 = f1.add_subplot(111)
+ax1.errorbar(X, Y, data[3], data[1], 'b.')
+ax1.set_xlim(left=0)
+ax1.set_ylim(bottom=0)
+ax1.grid()
 
+Y2 = 4.9 * 9.81 * np.sin(np.radians(Y))
+
+f2 = plt.figure()
+ax2 = f2.add_subplot(111)
+ax2.plot(X, Y2**2, '.', color='orange')
+
+res2 = linregress(X, Y2**2)
 x = np.linspace(0, 1.75, 100)
-x3 = np.linspace(-2, np.log(1.75), 100)
 
-fig, ax = plt.subplots(1, 3)
+ax2.plot(x, res2.slope * x + res2.intercept)
 
-ax[0].plot(data[0], data[2]**3, 'b.')
-ax[0].plot(x, res1.slope * x + res1.intercept, color='orange')
-ax[1].plot(data[0], data[2]**2, 'r.')
-ax[1].plot(x, res2.slope * x + res2.intercept)
-ax[2].plot(np.log(data[0]), data[2], '.')
-ax[2].plot(x3, res3.slope * x3 + res3.intercept)
-#plt.xlim(left=0, right=1.6)
-#plt.ylim(bottom=0, top=20)
+print(np.sqrt(res2.slope))
 plt.show()
