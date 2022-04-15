@@ -9,5 +9,6 @@
 *.toc 
 *.fls
 *.fdb*
+*.ent
 
 python/ibstat/__pycache__

@@ -1,8 +1,8 @@
-from pathlib import Path
-import matplotlib.pyplot as plt
-from scipy.stats import linregress
-import numpy as np
 import csv
+import numpy as np
+import matplotlib.pyplot as plt
+from pathlib import Path
+from scipy.stats import linregress
 
 plt.rcParams['text.usetex'] = True
 plt.rcParams.update({'font.size': 11})

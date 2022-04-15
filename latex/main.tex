@@ -1,12 +1,15 @@
-\documentclass[12pt]{article}
+\documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 
+\usepackage{bm}
 \usepackage{amsmath}
 \usepackage{siunitx}
 \usepackage{graphicx}
 \usepackage{xcolor}
 \usepackage{fancyhdr}
+\usepackage{wrapfig}
+\usepackage{float}
 \usepackage{tikz}
 \usepackage{titlesec}
 \usepackage[small]{caption}
@@ -14,6 +17,7 @@
 \usepackage[notes,backend=biber]{biblatex-chicago}
 \usepackage[english]{babel}
 \usepackage{csquotes}
+\usepackage{hyperref}
 
 \usepackage[margin=1in]{geometry}
 \usepackage{setspace}
@@ -27,20 +31,28 @@
 
 \setlength{\headheight}{15.0pt}
 \setlength{\parindent}{0pt}
+\setlength{\parskip}{0.6em}
 
-\titleformat*{\section}{\large\bfseries}
-\titleformat*{\subsection}{\normalsize\bfseries}
+\titleformat*{\section}{\Large\bfseries}
+\titleformat*{\subsection}{\large\bfseries}
+\titlespacing*{\section}{0pt}{4pt}{4pt}
+\titlespacing*{\subsection}{0pt}{4pt}{4pt}
 
 \onehalfspacing
 
+\captionsetup[figure]{font=small,justification=centering}
+
 \bibliography{references}
+
+% this expresses a regualar vector
+\newcommand{\bvec}[1]{\bm{\mathbf{#1}}}
 
 \begin{document}
 
 	\begin{center}
-		\textbf{\large Investigating the relationship between the electric current and force exerted on a wire}
+		\textbf{\Large Investigating the relationship between the electric current and force exerted on a wire}
 
-		\vspace*{12pt}
+		\vspace*{8pt}
 
 		May 2022
 	\end{center}
