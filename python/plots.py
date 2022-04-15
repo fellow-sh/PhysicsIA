@@ -4,7 +4,7 @@ from scipy.stats import linregress
 import numpy as np
 import csv
 
-#plt.rcParams['text.usetex'] = True
+plt.rcParams['text.usetex'] = True
 #plt.rcParams.update({'font.size': 12})
 
 path = Path(__file__).parent.parent.resolve() / 'data' / 'image-data2.csv'
@@ -36,7 +36,7 @@ DY = data[3]
 f1 = plt.figure()
 ax1 = f1.add_subplot(111)
 ax1.errorbar(X, Y, DY, DX, '.')
-ax1.set_xlabel('Current (A)')
+ax1.set_xlabel(r'Current (\textit{A})')
 ax1.set_ylabel(u'Angle (\u00b0)')
 ax1.set_xlim(left=0, right=1.6)
 ax1.set_ylim(bottom=0)
@@ -44,9 +44,9 @@ ax1.grid()
 
 get_dx = lambda x, dx : (np.arctan(x + dx) - np.arctan(x - dx)) / 2
 
-X2 = np.arctan(X)
-DX2 = [get_dx(x, dx) for x, dx in zip(X, DX)]
-Y2 = Y
+X2 = X#np.degrees(np.arctan(X))
+DX2 = DX#[get_dx(x, dx) for x, dx in zip(X, DX)]
+Y2 = mass*9.81*np.tan(np.radians(Y))
 DY2 = DY
 
 f2 = plt.figure()
@@ -58,14 +58,17 @@ x = np.linspace(np.min(X2)*(0.8), np.max(X2)*1.1, 100)
 
 ax2.plot(x, (res2.slope * x + res2.intercept), 'k')
 
-ax2.set_xlabel(u'Inverse tangent of current (\u00b0)')
+ax2.set_xlabel(r'Current (\textit{A})')
 ax2.set_ylabel(u'Angle (\u00b0)')
 ax2.set_xlim(left=0)
-ax2.set_ylim(bottom=0, top=35)
+ax2.set_ylim(bottom=0)
 ax2.grid()
 
+eqstr1 = r'$y=%.2fx + %.2f$' % (res2.slope, res2.intercept)
+eqstr2 = r'$y=%.2fx %.2f$' % (res2.slope, res2.intercept)
+
 textstr = '\n'.join((
-    r'$y=%.2fx %.2f$' % (res2.slope, res2.intercept),
+    eqstr1 if res2.intercept > 0 else eqstr2,
     r'$\rho=%.4f$' % (res2.rvalue, )))
 
 props = dict(boxstyle='round', facecolor='wheat', alpha=0.5)
