@@ -1,6 +1,0 @@
-\@doanenote {1}
-macro:->\protecting
-{\blxmkbibnote
-{end}{\blxciteicmd
-{smartcite}{}{}{kramer2}{}}}
-\@endanenote 
