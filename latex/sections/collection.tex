@@ -16,7 +16,7 @@ The angle measurements were done through the measurement tool in GIMP.
 
 \begin{table}[H]
 	\centering
-	\onehalfspacing
+	\setstretch{1.15}
 	\begin{tabular}{|lr||lr||lr||lr||lr|}
 		\hline
 		\multicolumn{2}{|c||}{Trial 1} & \multicolumn{2}{|c||}{Trial 2} & \multicolumn{2}{c||}{Trial 3}& \multicolumn{2}{c||}{Trial 4}& \multicolumn{2}{c|}{Trial 5} \\
@@ -55,11 +55,11 @@ The uncertainty of the measured angle was propagated as such:
 For the first data point, $\pm(0.01 + 0.01)\si{\degree} = \pm0.02\si{\degree}$.
 This was done for each trial.
 
-The average deflection angle for each target current (ie. $0.20\si{\ampere}$, $0.40\si{\ampere}$, etc.) will not be taken, given the inherent variation of current.
+The average deflection angle for each target current (ie. $0.20\si{\ampere}$, $0.40\si{\ampere}$, etc.) will not be taken, given the inherent variation of current. % I am going to regret this.
 
 \begin{table}[H]
 	\centering
-	\onehalfspacing
+	\setstretch{1.15}
 	\begin{tabular}{|lr||lr||lr||lr||lr|}
 		\hline
 		\multicolumn{2}{|c||}{Trial 1} & \multicolumn{2}{|c||}{Trial 2} & \multicolumn{2}{c||}{Trial 3}& \multicolumn{2}{c||}{Trial 4}& \multicolumn{2}{c|}{Trial 5} \\
@@ -83,15 +83,78 @@ The average deflection angle for each target current (ie. $0.20\si{\ampere}$, $0
 
 The data in Table \ref{tab:raw2} is plotted in Figure \ref{fig:rawplot}.
 
-Next, the corrected angle data was used to calculate the force exerted on the wire. This was calculated as:
+Next, the corrected angle data was used to calculate the force exerted on the wire by using Equation \eqref{eqn:experiment}, where $m = 4.9\pm0.1\si{\gram}$ and $g = 9.81\si{\meter\per\second\squared}$. The first data point was calculated as:
 \begin{equation*}
-	F = mg \tan\theta
+	4.9\si{\gram} \times 9.81\si{\meter\per\second\squared} \times \tan 4.91\si{\degree} = 4.13\si{\milli\newton} \text{.}
 \end{equation*}
-where $m = 4.9\pm0.1\si{\gram}$ and $g = 9.81\si{\meter\per\second\squared}$.
+Propagation of uncertainty was calculated as:
+\begin{equation*}
+	\Delta F = \left( \frac{1}{\tan\theta} \times \frac{\tan(\theta + \Delta\theta) - \tan(\theta - \Delta\theta)}{2} + \frac{\Delta m}{m} \right) \times F \text{.}
+\end{equation*}
+For the first data point, the uncertainty for the $\tan\theta$ calculation was determined to be:
+\begin{equation*}
+	\frac{\tan([4.91 + 0.02]\si{\degree}) - \tan([4.91 - 0.02]\si{\degree})}{2} = 3.52\times10^{-4} \text{.}
+\end{equation*}
+Then, the sum of the fractional uncertainties between $\tan\theta$ and mass were taken:
+\begin{equation*}
+	\frac{3.52\times10^{-4}}{\tan 4.91\si{\degree}} + \frac{0.1\si{\gram}}{4.9\si{\gram}} = 2.5\times10^{-2} \text{.}
+\end{equation*}
+Finally, the fractional uncertainty is converted to the absolute uncertainty of the final value of force:
+\begin{equation*}
+	2.5\times10^{-2} \times 4.13\si{\milli\newton} = \pm 0.10\si{\milli\newton}
+\end{equation*}
+The data from these calculations are displayed on Table \ref{tab:proc} and plotted in Figure \ref{fig:procplot}.
 
-\begin{figure}[H]
+\begin{figure}[t!]
 	\centering
-	\includegraphics[width=0.8\textwidth]{figures/rawplot.png}
-	\caption{Plot of corrected measured angles vs current. Note that the errorbars are so small that they are barely visible in the graph}
+	\includegraphics[width=0.75\textwidth]{figures/rawplot.png}
+	\caption{Graph of corrected measured angles vs. current. Note that the errorbars are so small that they are barely visible in the graph.}
 	\label{fig:rawplot}
+\end{figure}
+
+\begin{table}[H]
+	\centering
+	\setstretch{1.15}
+	\begin{tabular}{|ccc||ccc||ccc|}
+		\hline
+		\multicolumn{3}{|c||}{Trial 1} & \multicolumn{3}{c||}{Trial 2} & \multicolumn{3}{c|}{Trial 3} \\
+		\hline
+		$I(\si{\ampere})$ & $F(\si{\milli\newton})$ & $\Delta F(\si{\milli\newton})$ & $I(\si{\ampere})$ & $F(\si{\milli\newton})$ & $\Delta F(\si{\milli\newton})$ & $I(\si{\ampere})$ & $F(\si{\milli\newton})$ & $\Delta F(\si{\milli\newton})$ \\
+		$\pm0.01$ & & & $\pm0.01$ & & & $\pm0.01$ & & \\
+		\hline
+		0.22 & 4.13 & $\pm0.10$ & 0.23 & 5.35 & $\pm0.13$ & 0.26 & 5.09 & $\pm0.12$ \\
+		0.39 & 9.69 & $\pm0.22$ & 0.42 & 10.35 & $\pm0.23$ & 0.46 & 11.17 & $\pm0.25$ \\
+		0.58 & 14.50 & $\pm0.31$ & 0.59 & 14.97 & $\pm0.32$ & 0.57 & 14.07 & $\pm0.31$ \\
+		0.80 & 18.84 & $\pm0.40$ & 0.88 & 20.41 & $\pm0.44$ & 0.78 & 18.53 & $\pm0.40$ \\
+		1.04 & 22.64 & $\pm0.48$ & 1.01 & 22.45 & $\pm0.48$ & 1.01 & 22.31 & $\pm0.48$ \\
+		1.20 & 25.53 & $\pm0.54$ & 1.21 & 24.85 & $\pm0.53$ & 1.20 & 25.26 & $\pm0.54$ \\
+		1.42 & 28.92 & $\pm0.61$ & 1.40 & 28.16 & $\pm0.60$ & 1.41 & 28.50 & $\pm0.60$\\
+		\hline
+	\end{tabular}
+	\begin{tabular}{|ccc||ccc|}
+		\hline
+		\multicolumn{3}{|c||}{Trial 4} & \multicolumn{3}{c|}{Trial 5} \\
+		\hline
+		$I(\si{\ampere})$ & $F(\si{\milli\newton})$ & $\Delta F(\si{\milli\newton})$ & $I(\si{\ampere})$ & $F(\si{\milli\newton})$ & $\Delta F(\si{\milli\newton})$ \\
+		$\pm0.01$ & & & $\pm0.01$ & & \\
+		\hline
+		0.18 & 2.97 & $\pm0.08$ & 0.19 & 3.12 & $\pm0.08$ \\
+		0.39 & 9.11 & $\pm0.20$ & 0.44 & 10.74 & $\pm0.24$ \\
+		0.61 & 14.93 & $\pm0.32$ & 0.61 & 15.14 & $\pm0.33$ \\
+		0.83 & 19.49 & $\pm0.42$ & 0.82 & 19.12 & $\pm0.41$ \\
+		1.06 & 22.84 & $\pm0.49$ & 0.99 & 21.79 & $\pm0.47$ \\
+		1.22 & 25.42 & $\pm0.54$ & 1.18 & 24.62 & $\pm0.52$ \\
+		1.42 & 28.16 & $\pm0.60$ & 1.38 & 27.47 & $\pm0.58$ \\
+		\hline
+	\end{tabular}
+	\caption{Table of force in relation to current.}
+	\vspace{-10pt}
+	\label{tab:proc}
+\end{table}
+
+\begin{figure}[b!]
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/procplot.png}
+	\caption{Graph of force vs. time.}
+	\label{fig:procplot}
 \end{figure}

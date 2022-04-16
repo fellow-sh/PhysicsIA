@@ -50,6 +50,8 @@ for x, y in procdata:
 procdata2.append(column)
 procdata2 = np.hstack((np.array(procdata2)))
 
+# Something tells me I'm going to regret not averaging these
+
 #np.savetxt('proc-data.csv', procdata2, fmt='%10.2f', delimiter=',')
 
 f1 = plt.figure()
