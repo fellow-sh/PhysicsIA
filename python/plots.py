@@ -62,7 +62,7 @@ ax1.set_ylim(bottom=0)
 ax1.grid()
 
 dtan = lambda x : np.tan(np.radians(x))
-get_dy = lambda y, dy, y2 : ((dtan(y+dy) - dtan(y-dy))/ 2 / dtan(y) + (1/4.9)) * y2
+get_dy = lambda y, dy, y2 : ((dtan(y+dy) - dtan(y-dy))/ 2 / dtan(y) + (0.1/4.9)) * y2
 
 X2 = X#np.degrees(np.arctan(X))
 DX2 = DX#[get_dx(x, dx) for x, dx in zip(X, DX)]
