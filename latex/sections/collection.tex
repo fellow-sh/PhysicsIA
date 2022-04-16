@@ -4,7 +4,7 @@
 
 The current going through the wire fluctuated as the wire swung, likely due to the changing contact of the wire with the supports.
 There were specific ranges where the current would fluctuate, mainly at the lower currents.
-At around $1.40\si{\ampere}$, the wire would get close enough to the bracket that it would jump and stick to the bracket.
+At around $1.40\si{\ampere}$, the wire would get close enough to the bracket that it would jump and stick to the bracket's surface.
 This was mitigated by avoiding current from exceeding $1.50\si{\ampere}$.
 From visual observation, the angle of deflection would increase as the current increased, but their relationship was determinable
 from visuals.
@@ -55,7 +55,7 @@ The uncertainty of the measured angle was propagated as such:
 For the first data point, $\pm(0.01 + 0.01)\si{\degree} = \pm0.02\si{\degree}$.
 This was done for each trial.
 
-The average deflection angle for each target current (ie. $0.20\si{\ampere}$, $0.40\si{\ampere}$, etc.) will not be taken, given the inherent variation of current. % I am going to regret this.
+The average deflection angle for each target current (ie. $0.20\si{\ampere}$, $0.40\si{\ampere}$, etc.) will not be taken given the inherent variance of current. % I am going to regret this.
 
 \begin{table}[H]
 	\centering
@@ -107,7 +107,7 @@ The data from these calculations are displayed on Table \ref{tab:proc} and plott
 
 \begin{figure}[t!]
 	\centering
-	\includegraphics[width=0.75\textwidth]{figures/rawplot.png}
+	\includegraphics[width=0.8\textwidth]{figures/rawplot.png}
 	\caption{Graph of corrected measured angles vs. current. Note that the errorbars are so small that they are barely visible in the graph.}
 	\label{fig:rawplot}
 \end{figure}
@@ -148,13 +148,15 @@ The data from these calculations are displayed on Table \ref{tab:proc} and plott
 		\hline
 	\end{tabular}
 	\caption{Table of force in relation to current.}
-	\vspace{-10pt}
+	\vspace{-3em}
 	\label{tab:proc}
 \end{table}
 
 \begin{figure}[b!]
 	\centering
-	\includegraphics[width=0.75\textwidth]{figures/procplot.png}
-	\caption{Graph of force vs. time.}
+	\includegraphics[width=0.8\textwidth]{figures/procplot.png}
+	\caption{Graph of force vs. current.}
 	\label{fig:procplot}
 \end{figure}
+
+\newpage
