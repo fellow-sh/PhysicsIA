@@ -1,3 +1,4 @@
+import sys
 import csv
 import numpy as np
 import matplotlib.pyplot as plt
@@ -7,9 +8,11 @@ from scipy.stats import linregress
 plt.rcParams['text.usetex'] = True
 plt.rcParams.update({'font.size': 11})
 
-path = Path(__file__).parent.parent.resolve() / 'data' / 'image-data2.csv'
+root = Path(__file__).parent.parent.resolve()
+data_dir = root / 'data'
+data_path = data_dir / 'image-data2.csv'
 
-with open(path) as datafile:
+with open(data_path) as datafile:
     csv_reader = csv.reader(datafile, delimiter=',')
     rawstrings = np.array(list(csv_reader)[1:]) # remove titles
     rawstrings = np.delete(rawstrings, 0, 1)
@@ -33,6 +36,22 @@ DX = data[1]
 Y = data[2]
 DY = data[3]
 
+procdata = np.array([X, Y], dtype=np.float64).T
+procdata2 = []
+last = 0
+column = []
+for x, y in procdata:
+    if last > x:
+        procdata2.append(column)
+        last = 0
+        column = []
+    column.append([x, y])
+    last = x
+procdata2.append(column)
+procdata2 = np.hstack((np.array(procdata2)))
+
+#np.savetxt('proc-data.csv', procdata2, fmt='%10.2f', delimiter=',')
+
 f1 = plt.figure()
 ax1 = f1.add_subplot(111)
 ax1.errorbar(X, Y, DY, DX, '.')
@@ -43,12 +62,27 @@ ax1.set_ylim(bottom=0)
 ax1.grid()
 
 dtan = lambda x : np.tan(np.radians(x))
-get_dy = lambda y, dy, y2 : (dtan(y+dy) - dtan(y-dy))/2 / dtan(y) * y2
+get_dy = lambda y, dy, y2 : ((dtan(y+dy) - dtan(y-dy))/ 2 / dtan(y) + (1/4.9)) * y2
 
 X2 = X#np.degrees(np.arctan(X))
 DX2 = DX#[get_dx(x, dx) for x, dx in zip(X, DX)]
 Y2 = mass*9.81*dtan(Y)
 DY2 = get_dy(Y, DY, Y2)
+
+procdata3 = []
+last = 0
+column = []
+for row in zip(X2, DX2, Y2, DY2):
+    if last > row[0]:
+        procdata3.append(column)
+        last = 0
+        column = []
+    column.append(row)
+    last = row[0]
+procdata3.append(column)
+procdata3 = np.hstack((np.array(procdata3)))
+
+#np.savetxt('proc-data2.csv', procdata3, fmt='%10.2f', delimiter=',')
 
 f2 = plt.figure()
 ax2 = f2.add_subplot(111)
@@ -77,4 +111,6 @@ props = dict(boxstyle='round', facecolor='wheat', alpha=0.5)
 ax2.text(0.05, 0.95, textstr, transform=ax2.transAxes, fontsize=12,
         verticalalignment='top', bbox=props)
 
-plt.show()
+# matplotlib expects TeX Live
+if not sys.platform == 'win32':
+    plt.show()
