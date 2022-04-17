@@ -1,7 +1,3 @@
-% offset graph is caused by static friction
-% inverse square relation is likely caused by ???
-% I don't know what else there is to say
-% oh yes, magnetic field strengh, etc etc
 \section*{Discussion}
 
 While the points on Figure \ref{fig:procplot} are visibly correlated and have a strong correlation coefficient with the plotted regression, the shape of the points suggests the current induced in the wire and the force measured are closely but not linearly related.
@@ -30,12 +26,20 @@ However, the opposite is reflected in the data in Figure \ref{fig:procplot}, as 
 This does not mean variation in magnetic field strength is ruled out.
 There is the possibility that, despite using large magnets, the magnetic field between the two magnets was not uniform.
 Using the magnetic gap calculator from K{\&}J Magnetics, the magnetic field strength relative to the distance from the center axis between two cylindrical magnets can be determined.\footcite{kjgap}
-By approximating the dimensions of the experiment magnets as cylindrical magnets, the graph in Figure \ref{fig:gaps} was produced.
+By approximating the dimensions of the experiment magnets as cylindrical magnets and setting an arbitrary magnetic strength (similar to the magnets used in the experiment), the graph in Figure \ref{fig:gaps} was produced.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.5\textwidth]{figures/gapplot.PNG}
 	\caption{Distribution of field strength over distance from the center axis between two magnets.}
 	\label{fig:gaps}
+	\vspace{-1em}
 \end{figure}
 This would explain why the force at the minimum and maximum angles varies from a linear relation; the magnetic field strength decreases when the wire is further away from the center.
+While the geometry between rectangular and cylindrical magnets are different, it is likely this concept is still present in rectangular magnets.
+Therefore, the variation of the data from a linear relation is due to the non-uniformity of the magnetic field between the two magnets.
 
+\section*{Evaluation}
+
+Because the magnetic field used in the experiment was not uniform, thus leading to the non-linear relation, it is difficult to determine if the data supports the hypothesis.
+While it is possible to correct the data based on the field strength profile of the magnets used, all that is known is that they are ferrite magnets; their grades are unknown.
+This means their field strength profile cannot be determined.
